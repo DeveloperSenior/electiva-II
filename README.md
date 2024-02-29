@@ -14,15 +14,21 @@ https://github.com/DeveloperSenior/electiva-II.git
 ```
 2. **Instalar modulos de node:**
 ```bash
-cd back-node
+cd task-manager-api
 npm install
 ```
 3. **Ejecutar la aplicacion local:**
 ```bash
-npm run runDeamon
+npm run runDev
 ```
-4. Abrir en el navegador http://localhost:3000/api/v1/ping si responde un `JSON` asi:
+4. Abrir en el navegador http://localhost:3000/api/v1/version si responde un `JSON` asi:
 ```json
-{"message": "pong!"}
+{"version": "1.0"}
 ```
 significa que está arriba nuestro servidor.
+
+5. **Visualizar Documentación :**
+La documentacion del API está en la url http://localhost:3000/api/v1/api-docs/
+
+6. **Coleccion postman :**
+En la herramienta Postman importar el archivo `task-manager-api.postman_collection` el cual se encuentra en la raiz del proyecto
