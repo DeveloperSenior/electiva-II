@@ -3,8 +3,8 @@
  */
 const express = require('express');
 const routerVersion = express.Router();
-const routerTask = require('./routes/tasks');
-const routerSwagger = require('./routes/swagger');
+const routerTask = require('./routes/TasksRoute');
+const routerSwagger = require('./routes/SwaggerRoute');
 
 var app = express();
 

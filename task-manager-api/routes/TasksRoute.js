@@ -1,5 +1,5 @@
 const express = require('express')
-const controller = require('../controllers/ctrltasks');
+const controller = require('../controllers/CtrlTasks');
 const router = express.Router();
 
 /**
@@ -69,7 +69,7 @@ const router = express.Router();
  *              $ref: '#/definitions/TaskModel'
  *           type: array
  */
-router.get('/task',(req, res) => controller.get(req,res));
+router.get('/task', controller.get);
 
 /**
  * @swagger
@@ -102,7 +102,8 @@ router.get('/task',(req, res) => controller.get(req,res));
  *         schema:
  *           $ref: '#/definitions/ResponseMessageModel'  
  */
-router.get('/task/:id', (req, res) => controller.get(req,res));
+router.get('/task/:id', controller.get);
+
 /**
  * @swagger
  * /task/{pageSize}/{pageNumber}:
@@ -134,7 +135,7 @@ router.get('/task/:id', (req, res) => controller.get(req,res));
  *         schema:
  *           $ref: '#/definitions/ResponseMessageModel'
  */
-router.get('/task/:pageSize/:pageNumber', (req, res) => controller.get(req,res));
+router.get('/task/:pageSize/:pageNumber', controller.get);
 
 /**
  * @swagger
@@ -164,7 +165,8 @@ router.get('/task/:pageSize/:pageNumber', (req, res) => controller.get(req,res))
  *              $ref: '#/definitions/ResponseMessageModel'
  *           type: array
  */
-router.post('/task',(req, res) =>  controller.create(req,res));
+router.post('/task', controller.create);
+
 /**
  * @swagger
  * /task:
@@ -195,7 +197,8 @@ router.post('/task',(req, res) =>  controller.create(req,res));
  *         schema:
  *           $ref: '#/definitions/ResponseMessageModel'
  */
-router.put('/task',(req, res) =>  controller.update(req,res));
+router.put('/task', controller.update);
+
 /**
  * @swagger
  * /task/{id}:
@@ -223,7 +226,8 @@ router.put('/task',(req, res) =>  controller.update(req,res));
  *         schema:
  *           $ref: '#/definitions/ResponseMessageModel' 
  */
-router.delete('/task/:id',(req, res) => controller.remove(req,res));
+router.delete('/task/:id', controller.remove);
+
 /**
  * @swagger
  * /batch_task:
@@ -254,6 +258,6 @@ router.delete('/task/:id',(req, res) => controller.remove(req,res));
  *              $ref: '#/definitions/ResponseMessageModel'
  *           type: array
  */
-router.post('/batch_task',(req, res) =>  controller.createBatch(req,res));
+router.post('/batch_task', controller.createBatch);
 
 module.exports = router
