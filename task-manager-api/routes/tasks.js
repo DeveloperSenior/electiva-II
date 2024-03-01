@@ -34,6 +34,22 @@ const router = express.Router();
  *     properties:
  *       message:
  *         type: string
+ *   PagerResponseTaskModel:
+ *     type: object
+ *     required:
+ *       - sizePage
+ *       - nextPage
+ *       - data
+ *     properties:
+ *       sizePage:
+ *         type: number
+ *       nextPage:
+ *         type: number
+ *       data:
+ *         items:
+ *          $ref: '#/definitions/TaskModel'
+ *         type: array
+ *            
  */
 
 /**
@@ -87,6 +103,39 @@ router.get('/task',(req, res) => controller.get(req,res));
  *           $ref: '#/definitions/ResponseMessageModel'  
  */
 router.get('/task/:id', (req, res) => controller.get(req,res));
+/**
+ * @swagger
+ * /task/{pageSize}/{pageNumber}:
+ *   get:
+ *     description: Retrieve the pagination list of tasks
+ *     tags:
+ *       - tasks
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: pageSize
+ *         description: page size of the task to retrieve
+ *         in: path
+ *         required: true
+ *         type: number
+ *       - name: pageNumber
+ *         description: page Number of the task to retrieve
+ *         in: path
+ *         required: true
+ *         type: number
+ *     responses:
+ *       200:
+ *         description: tasks
+ *         schema:
+ *           $ref: '#/definitions/PagerResponseTaskModel'
+ *           type: object
+ *       400:
+ *         description: bad request error body
+ *         schema:
+ *           $ref: '#/definitions/ResponseMessageModel'
+ */
+router.get('/task/:pageSize/:pageNumber', (req, res) => controller.get(req,res));
+
 /**
  * @swagger
  * /task:
@@ -175,5 +224,36 @@ router.put('/task',(req, res) =>  controller.update(req,res));
  *           $ref: '#/definitions/ResponseMessageModel' 
  */
 router.delete('/task/:id',(req, res) => controller.remove(req,res));
+/**
+ * @swagger
+ * /batch_task:
+ *   post:
+ *     description: save list of tasks
+ *     tags:
+ *       - tasks
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: task
+ *         description: task to create
+ *         in: body
+ *         required: true
+ *         schema:
+ *          type: array
+ *          items:
+ *           $ref: '#/definitions/TaskModel'
+ *     responses:
+ *       201:
+ *         description: tasks created
+ *         schema:
+ *           $ref: '#/definitions/ResponseMessageModel'
+ *       400:
+ *         description: bad request error body
+ *         schema:
+ *           items:
+ *              $ref: '#/definitions/ResponseMessageModel'
+ *           type: array
+ */
+router.post('/batch_task',(req, res) =>  controller.createBatch(req,res));
 
 module.exports = router
