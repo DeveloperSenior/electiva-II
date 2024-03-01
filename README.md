@@ -21,12 +21,16 @@ servidor y uso de API Rest
 
 task-manager-api
     L controllers
-        L ctrltasks.js
+        L CtrlTasks.js
+    L db
+        L TaskFB.js
     L routes
-        L swagger.js
-        L tasks.js
+        L SwaggerRoute.js
+        L TasksRoute.js
+    L services
+        L TaskService.js
     L utilities
-        L constants.js
+        L Constants.js
     L validator
         L taskValidator.js
     L task-manager-api.postman_collection
